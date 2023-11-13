@@ -1,8 +1,7 @@
 const router = require("express").Router();
-const Survey = require("./../models/Survey.model");
 
 /**
- * ! All routes are prefixed by /survey
+ * ! All routes are prefixed by /api/conversation
  */
 
 router.post("/", async (req, res, next) => {

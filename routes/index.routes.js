@@ -16,7 +16,7 @@ const User = require("./../models/User.model");
 
 router.use("/survey", require("./surveys.routes"));
 
-// router.use("/auth", require("./auth.routes"));
+router.use("/auth", require("./auth.routes"));
 
 // router.use(isAuthenticated);
 

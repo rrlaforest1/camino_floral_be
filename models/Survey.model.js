@@ -8,25 +8,25 @@ const surveySchema = new Schema(
     },
 
     0: {
-      answers: [Boolean],
+      1: [Boolean],
     },
     1: {
-      answers: [Boolean],
+      1: [Boolean],
     },
     2: {
-      answers: [Boolean],
+      1: [Boolean],
     },
     3: {
-      answers: [Boolean],
+      1: [Boolean],
     },
     4: {
-      answers: [Boolean],
+      1: [Boolean],
     },
     5: {
-      answers: [Boolean],
+      1: [Boolean],
     },
     6: {
-      answers: [Boolean],
+      1: [Boolean],
     },
     comment: String,
   },
