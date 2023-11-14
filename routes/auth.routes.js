@@ -22,7 +22,7 @@ router.post(
 
       // return res.send("ok")
 
-      const { username, password } = req.body;
+      const { username, email, password } = req.body;
       // 1- Is the password safe?
       const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
       if (!passwordRegex.test(password)) {
@@ -33,11 +33,11 @@ router.post(
       }
       // 2- Check if the user exist
       // The email might already be used
-      const foundUser = await User.findOne({ username: username });
+      const foundUser = await User.findOne({ email: email });
       if (foundUser) {
         return res
           .status(400)
-          .json({ message: `The username ${username} is already used.` });
+          .json({ message: `The email ${email} is already used.` });
       }
 
       // Hash the password
@@ -51,6 +51,7 @@ router.post(
       //   }
       const createdUser = await User.create({
         username,
+        email,
         password: hashedPassword,
         // picture,
       });
@@ -66,10 +67,8 @@ router.post(
 router.post("/login", async (req, res, next) => {
   try {
     console.log("login rout BE", req.body);
-    const { username, password } = req.body;
-    const foundUser = await User.findOne({ username }).select(
-      "password username"
-    );
+    const { email, password } = req.body;
+    const foundUser = await User.findOne({ email }).select("password email");
     if (!foundUser) {
       return res.status(400).json({ message: "Wrong credentials" });
     }
@@ -80,7 +79,7 @@ router.post("/login", async (req, res, next) => {
     if (!isPasswordCorrect) {
       return res.status(400).json({ message: "Wrong credentials" });
     }
-    // console.log(foundUser, isPasswordCorrect, { username, password })
+    // console.log(foundUser, isPasswordCorrect, { email, password })
 
     const payload = { _id: foundUser._id };
 
