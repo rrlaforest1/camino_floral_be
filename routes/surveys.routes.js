@@ -1,15 +1,17 @@
 const router = require("express").Router();
 
+const Survey = require("./../models/Survey.model");
+
 /**
  * ! All routes are prefixed by /survey
  */
 
 router.get("/", async (req, res, next) => {
   try {
-    const allConversationsOfUser = await Conversation.find({
-      participants: { $in: [req.userId] },
-    }).populate("participants");
-    res.json(allConversationsOfUser);
+    const formES = await Survey.find({
+      lang: "ES",
+    });
+    res.json(formES);
   } catch (error) {
     next(error);
   }

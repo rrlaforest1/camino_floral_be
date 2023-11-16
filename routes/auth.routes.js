@@ -6,7 +6,7 @@ const { isAuthenticated } = require("./../middlewares/authMiddlewares");
 const saltRounds = 12;
 
 /**
- * ! All routes are prefixed by /api/auth
+ * ! All routes are prefixed by /auth
  */
 
 // const fileUploader = require("./../config/cloudinaryConfig");

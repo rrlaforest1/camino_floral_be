@@ -9,6 +9,14 @@ const userResponseSchema = new Schema(
     catIndex: Number,
     subcatIndex: Number,
     answers: [Boolean],
+    finished: {
+      type: Boolean,
+      default: false,
+    },
+    archived: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

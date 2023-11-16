@@ -22,7 +22,8 @@ router.use("/auth", require("./auth.routes"));
 
 // router.use(isAuthenticated);
 
-router.use("/users", require("./users.routes"));
+router.use("/user", require("./user.routes"));
+
 // router.use("/conversation", require("./conversation.routes"));
 // router.use("/messages", require("./messages.routes"));
 

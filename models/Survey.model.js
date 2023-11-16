@@ -3,6 +3,7 @@ const { Schema, model } = require("mongoose");
 const subCategorySchema = new Schema({
   subCategoryIndex: Number,
   name: String,
+  flower: String,
   questions: [String],
 });
 const categorySchema = new Schema({
