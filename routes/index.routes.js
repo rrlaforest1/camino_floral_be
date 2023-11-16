@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const User = require("./../models/User.model");
-// const { isAuthenticated } = require("./../middlewares/authMiddlewares");
+const { isAuthenticated } = require("./../middlewares/authMiddlewares");
 /**
  * ! All routes are prefixed by
  */
@@ -20,7 +20,7 @@ router.use("/answers", require("./answers.routes"));
 
 router.use("/auth", require("./auth.routes"));
 
-// router.use(isAuthenticated);
+router.use(isAuthenticated);
 
 router.use("/user", require("./user.routes"));
 

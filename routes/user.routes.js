@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const User = require("./../models/User.model");
 const Survey = require("../models/Survey.model");
 const UserResponses = require("../models/UserResponse.model");
 const { isAuthenticated } = require("./../middlewares/authMiddlewares");
@@ -65,6 +66,21 @@ router.put("/", isAuthenticated, async (req, res, next) => {
 });
 
 router.put("/:resId", isAuthenticated, async (req, res, next) => {
+  try {
+    const { resId } = req.params;
+    const updatedMessage = await User.findByIdAndUpdate(resId, req.body, {
+      new: true,
+    });
+    if (!updatedMessage) {
+      return res.status(401).json({ message: "Denied !" });
+    }
+    res.status(202).json(updatedMessage);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.put("/answers/:resId", isAuthenticated, async (req, res, next) => {
   try {
     const { resId } = req.params;
     const updatedMessage = await UserResponses.findByIdAndUpdate(
