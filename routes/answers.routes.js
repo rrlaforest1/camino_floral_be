@@ -31,9 +31,6 @@ router.post("/", isAuthenticated, async (req, res, next) => {
 router.post("/extrainfo", isAuthenticated, async (req, res, next) => {
   try {
     const connectedUser = await User.findById(req.userId);
-    console.log("connectedUser", connectedUser);
-
-    console.log("extrainfo", req.body);
 
     const { info } = req.body;
 

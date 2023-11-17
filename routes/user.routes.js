@@ -68,9 +68,13 @@ router.put("/", isAuthenticated, async (req, res, next) => {
 router.put("/:resId", isAuthenticated, async (req, res, next) => {
   try {
     const { resId } = req.params;
-    const updatedMessage = await User.findByIdAndUpdate(resId, req.body, {
-      new: true,
-    });
+    const updatedMessage = await User.findOneAndUpdate(
+      { _id: req.userId },
+      req.body,
+      {
+        new: true,
+      }
+    );
     if (!updatedMessage) {
       return res.status(401).json({ message: "Denied !" });
     }
@@ -105,7 +109,6 @@ router.delete("/", isAuthenticated, async (req, res, next) => {
       user: req.userId,
       archived: false,
     });
-    console.log("all deleted");
     res.sendStatus(204);
   } catch (error) {
     next(error);

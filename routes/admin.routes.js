@@ -9,7 +9,6 @@ const { isAuthenticated } = require("./../middlewares/authMiddlewares");
 router.put("/:formId", isAuthenticated, async (req, res, next) => {
   try {
     const { formId } = req.params;
-    console.log("formId", formId);
     const updatedForm = await Survey.findByIdAndUpdate(formId, req.body, {
       new: true,
     });
